@@ -1,7 +1,7 @@
 import PhotoFetcher from '../components/PhotoFetcher.jsx';
 
 export default function Freewriter() {
-    return (
+    return ( 
         <PhotoFetcher />
         // Add other content here
     )
