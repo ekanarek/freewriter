@@ -5,7 +5,7 @@ export default function Navigation() {
         <nav>
             <Link to="/">New Freewrite</Link>
             <Link to="/journal">My Journal</Link>
-            <Link to="/signin">Sign In/Create an Account</Link>
+            <Link to="/auth">Sign In/Create an Account</Link>
         </nav>
     )
 }
