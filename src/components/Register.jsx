@@ -20,7 +20,7 @@ const Register = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="auth-form">
             <h2>Register</h2>
             {error && <p style={{ color: 'red' }}>{error}</p>}
             <div>

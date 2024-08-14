@@ -5,7 +5,8 @@ import express from "express";
 import bcrypt from "bcryptjs";
 import { body, validationResult } from "express-validator";
 import jwt from "jsonwebtoken";
-import { Client } from "pg";
+import pkg from "pg";
+const { Client } = pkg;
 
 const router = express.Router();
 const client = new Client({ connectionString: process.env.DATABASE_URL });

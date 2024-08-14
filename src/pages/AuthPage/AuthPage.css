@@ -1,0 +1,12 @@
+.auth-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+}
+
+.auth-form {
+    flex: 1;
+    max-width: 400px;
+}
