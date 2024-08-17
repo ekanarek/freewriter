@@ -4,26 +4,17 @@ dotenv.config();
 import express from "express";
 import morgan from "morgan";
 import ViteExpress from "vite-express";
-import pg from "pg";
 import { getRandomPhoto } from "./unsplashService.js";
-import authRoutes from './auth.js';
+import authRoutes from "./auth.js";
+import client from "./db.js";
 
-const { Client } = pg;
 const app = express();
 const port = process.env.PORT || 8000;
 
-const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-});
-
-client
-  .connect()
-  .then(() => console.log("Connected to database"))
-  .catch((err) => console.error("Connection error", err.stack));
-
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: false }));
-app.use('/api/auth', authRoutes);
+app.use(express.json());
+app.use("/api", authRoutes);
 
 ViteExpress.config({ printViteDevServerHost: true });
 
