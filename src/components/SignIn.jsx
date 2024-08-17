@@ -1,20 +1,26 @@
 import { useState } from "react";
+import useAuth from '../utils/useAuth.js';
 import axios from "axios";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  const { login } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post("/api/login", { email, password });
-      localStorage.setItem("token", response.data.token); // Saves the token in localStorage
-      // Redirect to journal
-      window.location.href = "/journal";
+      if (response.status === 200) {
+        localStorage.setItem("token", response.data.token); // Saves the token in localStorage
+        login();
+        // Redirect to journal
+        window.location.href = "/journal";
+      }
     } catch (err) {
       setError(err.response.data.errors[0].msg);
+      console.error("Error logging in:", error);
     }
   };
 
