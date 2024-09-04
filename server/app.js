@@ -6,7 +6,7 @@ import morgan from "morgan";
 import ViteExpress from "vite-express";
 import { getRandomPhoto } from "./unsplashService.js";
 import authRoutes from "./auth.js";
-import client from "./db.js";
+import entryRoutes from "./entries.js";
 
 const app = express();
 const port = process.env.PORT || 8000;
@@ -15,6 +15,7 @@ app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use("/api", authRoutes);
+app.use("/api", entryRoutes);
 
 ViteExpress.config({ printViteDevServerHost: true });
 

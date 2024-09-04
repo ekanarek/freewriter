@@ -1,9 +1,22 @@
 import PhotoFetcher from '../components/PhotoFetcher.jsx';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function Freewriter() {
     const [entry, setEntry] = useState("");
+    const [photoId, setPhotoId] = useState("");
+
+    useEffect(() => {
+        const fetchPhoto = async () => {
+            try {
+                const response = await axios.get("/api/photo");
+                setPhotoId(response.data.id);
+            } catch (error) {
+                console.error("Error fetching photo:", error);
+            }
+        };
+        fetchPhoto();
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
