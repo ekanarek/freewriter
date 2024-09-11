@@ -53,7 +53,7 @@ router.post(
 
       // Generate JWT Token
       const token = jwt.sign({ userId }, process.env.JWT_SECRET, {
-        expiresIn: "1h",
+        expiresIn: "7d",
       });
 
       res.status(201).json({ token });
@@ -122,17 +122,17 @@ router.post(
 
 // JWT Verification Middleware
 export function verifyToken(req, res, next) {
-  const token = req.header("Authorization")?.split(" ")[1];
+  const token = req.headers.authorization?.split(" ")[1]; // Extracts token from 'Bearer <token>'
 
   if (!token) {
-    return res.status(401).json({ msg: "No token, authorization denied" });
+    return res.status(403).json({ message: "Token is required" });
   }
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET); // Verifies the token
     req.userId = decoded.userId; // Attaches userId to the request object
     next();
-  } catch (err) {
+  } catch (error) {
     res.status(401).json({ msg: "Token is not valid" });
   }
 }

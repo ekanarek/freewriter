@@ -4,13 +4,13 @@ import axios from "axios";
 
 export default function Freewriter() {
   const [entry, setEntry] = useState("");
-  const [photoId, setPhotoId] = useState("");
+  const [photo, setPhoto] = useState(null);
 
   useEffect(() => {
     const fetchPhoto = async () => {
       try {
         const response = await axios.get("/api/photo");
-        setPhotoId(response.data.id);
+        setPhoto(response.data);
       } catch (error) {
         console.error("Error fetching photo:", error);
       }
@@ -23,9 +23,27 @@ export default function Freewriter() {
 
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.post(
+
+      // Add photo to photos table
+      const addPhotoResponse = await axios.post(
+        "/api/photos", {
+          unsplash_id: photo.id, 
+          photographer: photo.user.name,
+        },
+        { 
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const photoDbId = addPhotoResponse.data.photoId;
+
+      // Save journal entry
+      const saveEntryResponse = await axios.post(
         "/api/entries",
-        { photoId: photoId, content: entry },
+        { photoId: photoDbId, content: entry },
         {
           headers: {
             "Content-Type": "application/json",
@@ -33,7 +51,8 @@ export default function Freewriter() {
           },
         }
       );
-      console.log("Entry saved successfully:", response.data);
+
+      console.log("Entry saved successfully:", saveEntryResponse.data);
     } catch (error) {
       console.error("Error saving the entry:", error);
     }

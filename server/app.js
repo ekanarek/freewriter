@@ -7,6 +7,7 @@ import ViteExpress from "vite-express";
 import { getRandomPhoto } from "./unsplashService.js";
 import authRoutes from "./auth.js";
 import entryRoutes from "./entries.js";
+import photosRouter from "./photos.js";
 
 const app = express();
 const port = process.env.PORT || 8000;
@@ -16,6 +17,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use("/api", authRoutes);
 app.use("/api", entryRoutes);
+app.use("/api", photosRouter);
 
 ViteExpress.config({ printViteDevServerHost: true });
 
