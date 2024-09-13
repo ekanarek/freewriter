@@ -7,7 +7,6 @@ const router = express.Router();
 // Route to Add Photo to the Database
 router.post("/photos", verifyToken, async (req, res) => {
     const { unsplash_id, photographer } = req.body;
-    console.log(req.body);
 
     if (!unsplash_id || !photographer) {
         return res.status(400).json({ error: "Unsplash ID and Photographer are required "});

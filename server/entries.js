@@ -9,6 +9,10 @@ router.post("/entries", verifyToken, async (req, res) => {
     const { photoId, content } = req.body;
     const userId = req.userId;
 
+    if (!userId) {
+        return res.status(400).json({ error: "User ID is required" });
+    }
+
     if (!photoId) {
         return res.status(400).json({ error: "Photo ID is required" });
     }
