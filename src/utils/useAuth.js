@@ -9,8 +9,5 @@ export default function useAuth() {
     if (!context) {
         throw new Error("useAuth must be used within an AuthProvider");
     }
-    
-    // const { isAuthenticated, logout } = useContext(AuthContext);
-    // return { isAuthenticated, logout };
     return context;
 }

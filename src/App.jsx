@@ -1,4 +1,3 @@
-import { AuthProvider } from "./contexts/AuthContext.jsx";
 import {
   BrowserRouter as Router,
   Route,
@@ -43,13 +42,5 @@ function App() {
       </Router>
   );
 }
-
-// export default function AppWrapper() {
-//   return (
-//     <AuthProvider>
-//       <App />
-//     </AuthProvider>
-//   )
-// }
 
 export default App;
