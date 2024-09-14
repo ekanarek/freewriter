@@ -13,13 +13,17 @@ export function AuthProvider({ children }) {
         }
     }, []);
 
-    const login = () => {
-        setIsAuthenticated(true);
-    }
+        const login = () => {
+            setIsAuthenticated(true);
+        }
+        
     const logout = () => {
-        setIsAuthenticated(false);
+        console.log("User logged out")
         localStorage.removeItem("token");
+        setIsAuthenticated(false);
     };
+
+    console.log("Providing context:", { isAuthenticated, logout });
 
     return (
         <AuthContext.Provider value={{ isAuthenticated, login, logout }}>

@@ -18,10 +18,12 @@ export default function Navigation() {
 
   return (
     <nav>
-      <Link to="/">New Freewrite</Link>
-      <Link to="/journal">My Journal</Link>
       {isAuthenticated ? (
+        <>
+              <Link to="/">New Freewrite</Link>
+      <Link to="/journal">My Journal</Link>
         <button onClick={handleLogout}>Sign Out</button>
+        </>
       ) : (
         <Link to="/auth">Sign In/Create an Account</Link>
       )}

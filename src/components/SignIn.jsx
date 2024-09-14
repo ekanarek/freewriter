@@ -16,7 +16,7 @@ export default function SignIn() {
         localStorage.setItem("token", response.data.token); // Saves the token in localStorage
         login();
         // Redirect to journal
-        window.location.href = "/journal";
+        window.location.href = "/";
       }
     } catch (err) {
       setError(err.response.data.errors[0].msg);

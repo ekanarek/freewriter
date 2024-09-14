@@ -3,5 +3,14 @@ import { AuthContext } from "../contexts/AuthContext.jsx";
 
 
 export default function useAuth() {
-    return useContext(AuthContext);
+    console.log("useAuth hook running")
+    const context = useContext(AuthContext);
+
+    if (!context) {
+        throw new Error("useAuth must be used within an AuthProvider");
+    }
+    
+    // const { isAuthenticated, logout } = useContext(AuthContext);
+    // return { isAuthenticated, logout };
+    return context;
 }
