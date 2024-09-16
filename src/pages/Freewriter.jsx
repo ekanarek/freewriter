@@ -24,6 +24,8 @@ export default function Freewriter() {
     try {
       const token = localStorage.getItem("token");
 
+      console.log("Submitting photo data:", photo);
+
       // Add photo to photos table
       const addPhotoResponse = await axios.post(
         "/api/photos", {

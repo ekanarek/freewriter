@@ -56,7 +56,7 @@ router.post(
         expiresIn: "7d",
       });
 
-      res.status(201).json({ token });
+      res.status(201).json({ message: "User registered successfully!" });
     } catch (err) {
       console.error("Error creating user:", err);
       res.status(500).json({ errors: [{ msg: "Server error" }] });

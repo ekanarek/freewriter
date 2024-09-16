@@ -11,10 +11,19 @@ const Register = () => {
         setError(null);
 
         try {
-            const response = await axios.post('/api/auth/register', { email, password });
+            const response = await axios.post('/api/register', { email, password }, {
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                timeout: 10000
+            });
             // Handle successful registration with redirect
             console.log('User registered:', response.data);
+            alert("You've created an account! You can now sign in.");
+            setEmail('');
+            setPassword('');
         } catch (err) {
+            console.error("Registration error:", err);
             setError(err.response?.data?.errors?.[0]?.msg || 'Registration failed');
         }
     };

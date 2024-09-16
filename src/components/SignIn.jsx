@@ -10,6 +10,7 @@ export default function SignIn() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(null);
     try {
       const response = await axios.post("/api/login", { email, password });
       if (response.status === 200) {
@@ -21,6 +22,7 @@ export default function SignIn() {
     } catch (err) {
       setError(err.response.data.errors[0].msg);
       console.error("Error logging in:", error);
+      alert("Sign-in was unsuccessful. Try using a different email or password, or create a new account.");
     }
   };
 
@@ -44,7 +46,6 @@ export default function SignIn() {
         />
         <button type="submit">Sign In</button>
       </form>
-      {error && <p>{error}</p>}
     </>
   );
 }

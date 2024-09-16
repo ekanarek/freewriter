@@ -8,6 +8,8 @@ const router = express.Router();
 router.post("/photos", verifyToken, async (req, res) => {
     const { unsplash_id, photographer } = req.body;
 
+    console.log("Received photo data:", { unsplash_id, photographer });
+
     if (!unsplash_id || !photographer) {
         return res.status(400).json({ error: "Unsplash ID and Photographer are required "});
     }
