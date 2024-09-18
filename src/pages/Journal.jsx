@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function Journal() {
     const [entries, setEntries] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchEntries = async () => {
@@ -22,6 +24,26 @@ export default function Journal() {
         fetchEntries();
     }, []);
 
+    const handleEdit = (entryId) => {
+        navigate(`/entries/${entryId}?`);
+    };
+
+    const handleDelete = async (entryId) => {
+        const token = localStorage.getItem("token");
+
+        try {
+            await axios.delete(`/api/entries/${entryId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+
+            setEntries((prevEntries) => prevEntries.filter((entry) => entry.id !== entryId));
+        } catch (error) {
+            console.error("Error deleting entry: ", error);
+        }
+    }
+
     return (
         <div>
             <h2>My Journal Entries</h2>
@@ -39,8 +61,8 @@ export default function Journal() {
                             <td>{new Date(entry.created_at).toLocaleDateString()}</td>
                             <td>{entry.content.split("/n")[0]}</td>
                             <td>
-                                <button>Edit</button>
-                                <button>Delete</button>
+                                <button onClick={() => handleEdit(entry.id)}>Edit</button>
+                                <button onClick={() => handleDelete(entry.id)}>Delete</button>
                             </td>
                         </tr>
                     ))}

@@ -21,3 +21,13 @@ export const getRandomPhoto = async () => {
     throw error;
   }
 };
+
+export const fetchPhotoById = async (unsplashId) => {
+  try {
+    const response = await unsplashApi.get(`/photos/${unsplashId}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching photo from Unsplash: ", error);
+    throw error;
+  }
+}

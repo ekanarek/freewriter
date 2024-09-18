@@ -1,33 +1,59 @@
 import PhotoFetcher from "../components/PhotoFetcher.jsx";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 export default function Freewriter() {
+  const { entryId } = useParams();
   const [entry, setEntry] = useState("");
   const [photo, setPhoto] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
 
   const fetchPhoto = async () => {
     try {
       const response = await axios.get("/api/photo");
       setPhoto(response.data);
-      console.log("Freewriter.jsx response: ", response.data);
     } catch (error) {
       console.error("Error fetching photo:", error);
     }
   };
 
   useEffect(() => {
-    fetchPhoto();
-  }, []);
+    if (entryId) {
+      const fetchEntry = async () => {
+        try {
+          const token = localStorage.getItem("token");
+          const response = await axios.get(`/api/entries/${entryId}`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+          //DEBUGGING
+          console.log("Fetched entry data: ", response.data);
+
+          const entryData = response.data;
+          setEntry(entryData.content);
+          setPhoto(entryData.photo);
+          setIsEditing(true);
+        } catch (error) {
+          console.error("Error fetching entry: ", error);
+        }
+      }; 
+
+      fetchEntry();
+    } else {
+      fetchPhoto();
+    }
+  }, [entryId]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const token = localStorage.getItem("token");
 
     try {
-      const token = localStorage.getItem("token");
 
-      console.log("Submitting photo data:", photo);
-
+      if (!isEditing) {
       // Add photo to photos table
       const addPhotoResponse = await axios.post(
         "/api/photos", {
@@ -45,7 +71,7 @@ export default function Freewriter() {
       const photoDbId = addPhotoResponse.data.photoId;
 
       // Save journal entry
-      const saveEntryResponse = await axios.post(
+      await axios.post(
         "/api/entries",
         { photoId: photoDbId, content: entry },
         {
@@ -55,8 +81,18 @@ export default function Freewriter() {
           },
         }
       );
-
-      console.log("Entry saved successfully:", saveEntryResponse.data);
+      alert("Your freewrite has been saved.")
+      } else {
+        // Update the existing journal entry
+        const response = await axios.put(`/api/entries/${entryId}`, { content: entry }, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          }
+        });
+        console.log("Entry saved successfully: ", response.data);
+        alert("Your changes have been saved.");
+      }
     } catch (error) {
       console.error("Error saving the entry:", error);
     }
@@ -65,7 +101,7 @@ export default function Freewriter() {
   return (
     <div>
       <PhotoFetcher photo={photo}/>
-      <button onClick={fetchPhoto}>New Photo</button>
+      <button onClick={fetchPhoto} disabled={isEditing}>New Photo</button>
       <form onSubmit={handleSubmit}>
         <textarea
           value={entry}
@@ -74,7 +110,7 @@ export default function Freewriter() {
           rows="10"
           cols="50"
         ></textarea>
-        <button type="submit" disabled={!photo}>Save Freewrite</button>
+        <button type="submit" disabled={!photo}>{isEditing ? "Save Changes" : "Save Freewrite"}</button>
       </form>
     </div>
   );

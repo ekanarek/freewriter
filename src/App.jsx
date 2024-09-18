@@ -27,6 +27,12 @@ function App() {
             }
           />
           <Route
+            path="/entries/:entryId?"
+            element={
+              isAuthenticated ? <Freewriter /> : <Navigate to="/auth" replace />
+            }
+          />
+          <Route
             path="/journal"
             element={
               isAuthenticated ? <Journal /> : <Navigate to="/auth" replace />
