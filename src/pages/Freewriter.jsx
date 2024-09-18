@@ -71,7 +71,7 @@ export default function Freewriter() {
           rows="10"
           cols="50"
         ></textarea>
-        <button type="submit">Save Freewrite</button>
+        <button type="submit" disabled={!photo}>Save Freewrite</button>
       </form>
     </div>
   );

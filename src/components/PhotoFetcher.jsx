@@ -4,16 +4,16 @@ import axios from "axios";
 export default function PhotoFetcher() {
   const [photo, setPhoto] = useState(null);
 
-  useEffect(() => {
-    const fetchPhoto = async () => {
-      try {
-        const response = await axios.get("/api/photo");
-        setPhoto(response.data);
-      } catch (error) {
-        console.error("Error fetching photo: ", error);
-      }
-    };
+  const fetchPhoto = async () => {
+    try {
+      const response = await axios.get("/api/photo");
+      setPhoto(response.data);
+    } catch (error) {
+      console.error("Error fetching photo: ", error);
+    }
+  }
 
+  useEffect(() => {
     fetchPhoto();
   }, []);
 
@@ -27,6 +27,7 @@ export default function PhotoFetcher() {
       ) : (
         <p>Loading photo...</p>
       )}
+      <button onClick={fetchPhoto}>New Photo</button>
     </div>
   );
 }
