@@ -29,20 +29,26 @@ export default function Journal() {
   };
 
   const handleDelete = async (entryId) => {
-    const token = localStorage.getItem("token");
+    const isConfirmed = window.confirm(
+      "Are you sure you want to delete this entry?"
+    );
 
-    try {
-      await axios.delete(`/api/entries/${entryId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+    if (isConfirmed) {
+      const token = localStorage.getItem("token");
 
-      setEntries((prevEntries) =>
-        prevEntries.filter((entry) => entry.id !== entryId)
-      );
-    } catch (error) {
-      console.error("Error deleting entry: ", error);
+      try {
+        await axios.delete(`/api/entries/${entryId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        setEntries((prevEntries) =>
+          prevEntries.filter((entry) => entry.id !== entryId)
+        );
+      } catch (error) {
+        console.error("Error deleting entry: ", error);
+      }
     }
   };
 
