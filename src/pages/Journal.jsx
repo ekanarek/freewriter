@@ -30,7 +30,7 @@ export default function Journal() {
 
   const handleDelete = async (entryId) => {
     const isConfirmed = window.confirm(
-      "Are you sure you want to delete this entry?"
+      "Are you sure you want to delete? This action cannot be undone."
     );
 
     if (isConfirmed) {

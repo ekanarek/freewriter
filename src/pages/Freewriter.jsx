@@ -1,13 +1,14 @@
 import PhotoFetcher from "../components/PhotoFetcher.jsx";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 export default function Freewriter() {
   const { entryId } = useParams();
   const [entry, setEntry] = useState("");
   const [photo, setPhoto] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
+  const navigate = useNavigate();
 
   const fetchPhoto = async () => {
     try {
@@ -28,9 +29,6 @@ export default function Freewriter() {
               Authorization: `Bearer ${token}`,
             },
           });
-
-          //DEBUGGING
-          console.log("Fetched entry data: ", response.data);
 
           const entryData = response.data;
           setEntry(entryData.content);
@@ -81,7 +79,6 @@ export default function Freewriter() {
             },
           }
         );
-        alert("Your freewrite has been saved.");
       } else {
         // Update the existing journal entry
         const response = await axios.put(
@@ -95,8 +92,8 @@ export default function Freewriter() {
           }
         );
         console.log("Entry saved successfully: ", response.data);
-        alert("Your changes have been saved.");
       }
+      navigate("/journal");
     } catch (error) {
       console.error("Error saving the entry:", error);
     }
