@@ -24,7 +24,7 @@ export default function Journal() {
 
     return (
         <div>
-            <h2>Your Journal Entries</h2>
+            <h2>My Journal Entries</h2>
             <table>
                 <thead>
                     <tr>
