@@ -6,15 +6,17 @@ export default function Freewriter() {
   const [entry, setEntry] = useState("");
   const [photo, setPhoto] = useState(null);
 
+  const fetchPhoto = async () => {
+    try {
+      const response = await axios.get("/api/photo");
+      setPhoto(response.data);
+      console.log("Freewriter.jsx response: ", response.data);
+    } catch (error) {
+      console.error("Error fetching photo:", error);
+    }
+  };
+
   useEffect(() => {
-    const fetchPhoto = async () => {
-      try {
-        const response = await axios.get("/api/photo");
-        setPhoto(response.data);
-      } catch (error) {
-        console.error("Error fetching photo:", error);
-      }
-    };
     fetchPhoto();
   }, []);
 
@@ -62,7 +64,8 @@ export default function Freewriter() {
 
   return (
     <div>
-      <PhotoFetcher />
+      <PhotoFetcher photo={photo}/>
+      <button onClick={fetchPhoto}>New Photo</button>
       <form onSubmit={handleSubmit}>
         <textarea
           value={entry}
