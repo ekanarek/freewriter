@@ -30,4 +30,4 @@ export const fetchPhotoById = async (unsplashId) => {
     console.error("Error fetching photo from Unsplash: ", error);
     throw error;
   }
-}
+};

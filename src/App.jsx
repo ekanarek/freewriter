@@ -17,35 +17,35 @@ function App() {
   const { isAuthenticated } = useContext(AuthContext);
 
   return (
-      <Router>
-        {isAuthenticated && <Navigation />}
-        <Routes>
-          <Route
-            path="/"
-            element={
-              isAuthenticated ? <Freewriter /> : <Navigate to="/auth" replace />
-            }
-          />
-          <Route
-            path="/entries/:entryId?"
-            element={
-              isAuthenticated ? <Freewriter /> : <Navigate to="/auth" replace />
-            }
-          />
-          <Route
-            path="/journal"
-            element={
-              isAuthenticated ? <Journal /> : <Navigate to="/auth" replace />
-            }
-          />
-          <Route
-            path="/auth"
-            element={
-              !isAuthenticated ? <AuthPage /> : <Navigate to="/" replace />
-            }
-          />
-        </Routes>
-      </Router>
+    <Router>
+      {isAuthenticated && <Navigation />}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            isAuthenticated ? <Freewriter /> : <Navigate to="/auth" replace />
+          }
+        />
+        <Route
+          path="/entries/:entryId?"
+          element={
+            isAuthenticated ? <Freewriter /> : <Navigate to="/auth" replace />
+          }
+        />
+        <Route
+          path="/journal"
+          element={
+            isAuthenticated ? <Journal /> : <Navigate to="/auth" replace />
+          }
+        />
+        <Route
+          path="/auth"
+          element={
+            !isAuthenticated ? <AuthPage /> : <Navigate to="/" replace />
+          }
+        />
+      </Routes>
+    </Router>
   );
 }
 

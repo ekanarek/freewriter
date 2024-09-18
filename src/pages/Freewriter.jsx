@@ -39,7 +39,7 @@ export default function Freewriter() {
         } catch (error) {
           console.error("Error fetching entry: ", error);
         }
-      }; 
+      };
 
       fetchEntry();
     } else {
@@ -52,44 +52,48 @@ export default function Freewriter() {
     const token = localStorage.getItem("token");
 
     try {
-
       if (!isEditing) {
-      // Add photo to photos table
-      const addPhotoResponse = await axios.post(
-        "/api/photos", {
-          unsplash_id: photo.id, 
-          photographer: photo.user.name,
-        },
-        { 
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+        // Add photo to photos table
+        const addPhotoResponse = await axios.post(
+          "/api/photos",
+          {
+            unsplash_id: photo.id,
+            photographer: photo.user.name,
           },
-        }
-      );
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
-      const photoDbId = addPhotoResponse.data.photoId;
+        const photoDbId = addPhotoResponse.data.photoId;
 
-      // Save journal entry
-      await axios.post(
-        "/api/entries",
-        { photoId: photoDbId, content: entry },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      alert("Your freewrite has been saved.")
+        // Save journal entry
+        await axios.post(
+          "/api/entries",
+          { photoId: photoDbId, content: entry },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        alert("Your freewrite has been saved.");
       } else {
         // Update the existing journal entry
-        const response = await axios.put(`/api/entries/${entryId}`, { content: entry }, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+        const response = await axios.put(
+          `/api/entries/${entryId}`,
+          { content: entry },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
           }
-        });
+        );
         console.log("Entry saved successfully: ", response.data);
         alert("Your changes have been saved.");
       }
@@ -100,8 +104,10 @@ export default function Freewriter() {
 
   return (
     <div>
-      <PhotoFetcher photo={photo}/>
-      <button onClick={fetchPhoto} disabled={isEditing}>New Photo</button>
+      <PhotoFetcher photo={photo} />
+      <button onClick={fetchPhoto} disabled={isEditing}>
+        New Photo
+      </button>
       <form onSubmit={handleSubmit}>
         <textarea
           value={entry}
@@ -110,7 +116,9 @@ export default function Freewriter() {
           rows="10"
           cols="50"
         ></textarea>
-        <button type="submit" disabled={!photo}>{isEditing ? "Save Changes" : "Save Freewrite"}</button>
+        <button type="submit" disabled={!photo}>
+          {isEditing ? "Save Changes" : "Save Freewrite"}
+        </button>
       </form>
     </div>
   );

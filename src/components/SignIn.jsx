@@ -1,5 +1,5 @@
 import { useState } from "react";
-import useAuth from '../utils/useAuth.js';
+import useAuth from "../utils/useAuth.js";
 import axios from "axios";
 
 export default function SignIn() {
@@ -22,7 +22,9 @@ export default function SignIn() {
     } catch (err) {
       setError(err.response.data.errors[0].msg);
       console.error("Error logging in:", error);
-      alert("Sign-in was unsuccessful. Try using a different email or password, or create a new account.");
+      alert(
+        "Sign-in was unsuccessful. Try using a different email or password, or create a new account."
+      );
     }
   };
 
