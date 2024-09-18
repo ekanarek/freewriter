@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import useAuth from "../utils/useAuth.js";
+import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
 export default function Navigation() {
   const { isAuthenticated, logout } = useAuth();
@@ -15,6 +17,26 @@ export default function Navigation() {
     logout();
     setForceRender(prev => !prev); // Force re-render
   }
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      const decodedToken = jwtDecode(token);
+
+      const currentTime = Date.now() / 1000;
+      if (decodedToken.exp < currentTime) {
+        handleLogout();
+      } else {
+        const timeUntilExpiration = (decodedToken.exp - currentTime) * 1000;
+        setTimeout(() => {
+          handleLogout();
+        }, timeUntilExpiration);
+      }
+    }
+  }, []);
 
   return (
     <nav>
