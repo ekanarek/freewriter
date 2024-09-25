@@ -1,3 +1,4 @@
+import "./Freewriter.css";
 import PhotoFetcher from "../../components/PhotoFetcher.jsx";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -100,11 +101,17 @@ export default function Freewriter() {
   };
 
   return (
-    <div>
-      <PhotoFetcher photo={photo} />
-      <button onClick={fetchPhoto} disabled={isEditing}>
-        New Photo
-      </button>
+    <div className="freewriter-container">
+      <div className="photo-wrapper">
+        <button
+          className="new-photo-button"
+          onClick={fetchPhoto}
+          disabled={isEditing}
+        >
+          <i className="material-icons">refresh</i> New Photo
+        </button>
+        <PhotoFetcher photo={photo} />
+      </div>
       <form onSubmit={handleSubmit}>
         <textarea
           value={entry}
@@ -113,9 +120,11 @@ export default function Freewriter() {
           rows="10"
           cols="50"
         ></textarea>
-        <button type="submit" disabled={!photo}>
-          {isEditing ? "Save Changes" : "Save Freewrite"}
-        </button>
+        <div className="button-container">
+          <button type="submit" disabled={!photo}>
+            {isEditing ? "Save Changes" : "Save"}
+          </button>
+        </div>
       </form>
     </div>
   );

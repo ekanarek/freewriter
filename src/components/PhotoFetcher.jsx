@@ -1,3 +1,5 @@
+import "../pages/Freewriter/Freewriter.css";
+
 export default function PhotoFetcher({ photo }) {
   return (
     <div>
@@ -5,7 +7,9 @@ export default function PhotoFetcher({ photo }) {
         <div>
           <img src={photo.urls.small} alt={photo.alt_description} />
           <p>
-            <a href={photo.user.links.html}>© {photo.user.name} on Unsplash</a>
+            <a href={photo.user.links.html} className="caption">
+              © {photo.user.name} on Unsplash
+            </a>
           </p>
         </div>
       ) : (
