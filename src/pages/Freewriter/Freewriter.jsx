@@ -1,4 +1,4 @@
-import PhotoFetcher from "../components/PhotoFetcher.jsx";
+import PhotoFetcher from "../../components/PhotoFetcher.jsx";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";

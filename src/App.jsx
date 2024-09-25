@@ -5,8 +5,8 @@ import {
   Navigate,
 } from "react-router-dom";
 import "./App.css";
-import Freewriter from "./pages/Freewriter.jsx";
-import Journal from "./pages/Journal.jsx";
+import Freewriter from "./pages/Freewriter/Freewriter.jsx";
+import Journal from "./pages/Journal/Journal.jsx";
 import AuthPage from "./pages/AuthPage/AuthPage.jsx";
 import Navigation from "./components/Navigation/Navigation.jsx";
 import { useContext } from "react";
