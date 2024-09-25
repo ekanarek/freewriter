@@ -1,12 +1,79 @@
 .auth-container {
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 20px;
+  justify-content: space-between;
+  align-items: flex-start;
   gap: 20px;
+  padding: 20px;
+  border: 1px solid #ffffff;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.auth-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.auth-copy {
+  max-width: 700px;
+  margin-top: -30px;
+  margin-bottom: 10px;
+  line-height: 1.6;
 }
 
 .auth-form {
   flex: 1;
   max-width: 400px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.auth-form h2 {
+  margin-top: -10px;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+.auth-form div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.auth-form label {
+  margin-right: 10px;
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+.auth-form input {
+  flex: 1;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.auth-form button {
+  width: 150px;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #dbbfdb;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.auth-form button:hover {
+  background-color: #b6b5d8;
+}
+
+.auth-form p {
+  color: red;
 }

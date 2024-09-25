@@ -1,6 +1,7 @@
 import { useState } from "react";
 import useAuth from "../utils/useAuth.js";
 import axios from "axios";
+import "../pages/AuthPage/AuthPage.css";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
@@ -32,20 +33,24 @@ export default function SignIn() {
     <>
       <form onSubmit={handleSubmit} className="auth-form">
         <h2>Sign In</h2>
-        <label>Email:</label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <label>Password:</label>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
+        <div>
+          <label>Email Address:</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label>Password:</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
         <button type="submit">Sign In</button>
       </form>
     </>

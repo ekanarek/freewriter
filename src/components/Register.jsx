@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import "../pages/AuthPage/AuthPage.css";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -37,7 +38,7 @@ const Register = () => {
       <h2>Register</h2>
       {error && <p style={{ color: "red" }}>{error}</p>}
       <div>
-        <label>Email</label>
+        <label>Email Address:</label>
         <input
           type="email"
           value={email}
@@ -46,7 +47,7 @@ const Register = () => {
         />
       </div>
       <div>
-        <label>Password</label>
+        <label>Password:</label>
         <input
           type="password"
           value={password}
