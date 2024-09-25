@@ -1,50 +1,51 @@
 nav {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    padding: 20px;
-    background-color: #f8f9fa;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  justify-content: center;
+  align-items: center;
 }
 
 nav a {
-    text-decoration: none;
-    text-align: center;
-    color: #333;
-    background-color: #f8f9fa;
-    font-size: 1rem;
-    padding: 10px 15px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.6s ease;
-    width: 80%;
+  text-decoration: none;
+  text-align: center;
+  color: #333;
+  background-color: #f8f9fa;
+  font-size: 1rem;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.6s ease;
+  width: 80%;
 }
 
 nav a:hover {
-    background-color: #877bae;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #877bae;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 nav button {
-    background-color: #b59dfa;
-    color: white;
-    font-size: 1.2rem;
-    border: 1px solid #b59dfa;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.6s ease;
+  background-color: #b59dfa;
+  color: white;
+  font-size: 1.2rem;
+  border: 1px solid #b59dfa;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.6s ease;
 }
 
 nav button:hover {
-    background-color: #877bae;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #877bae;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-nav a, nav button {
-    margin-bottom: 10px;
+nav a,
+nav button {
+  margin-bottom: 10px;
 }
