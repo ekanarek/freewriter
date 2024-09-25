@@ -18,33 +18,60 @@ function App() {
 
   return (
     <Router>
-      {isAuthenticated && <Navigation />}
-      <Routes>
-        <Route
-          path="/"
-          element={
-            isAuthenticated ? <Freewriter /> : <Navigate to="/auth" replace />
-          }
-        />
-        <Route
-          path="/entries/:entryId?"
-          element={
-            isAuthenticated ? <Freewriter /> : <Navigate to="/auth" replace />
-          }
-        />
-        <Route
-          path="/journal"
-          element={
-            isAuthenticated ? <Journal /> : <Navigate to="/auth" replace />
-          }
-        />
-        <Route
-          path="/auth"
-          element={
-            !isAuthenticated ? <AuthPage /> : <Navigate to="/" replace />
-          }
-        />
-      </Routes>
+      <div className="app-container">
+        {isAuthenticated && <Navigation className="navigation" />}
+        <div className="content">
+          <Routes>
+            {/* Root path "/" */}
+            <Route
+              path="/"
+              element={
+                isAuthenticated ? (
+                  <Freewriter />
+                ) : (
+                  <Navigate to="/auth" replace />
+                )
+              }
+            />
+
+            {/* Route for journal entries */}
+            <Route
+              path="/entries/:entryId?"
+              element={
+                isAuthenticated ? (
+                  <Freewriter />
+                ) : (
+                  <Navigate to="/auth" replace />
+                )
+              }
+            />
+
+            {/* Journal route */}
+            <Route
+              path="/journal"
+              element={
+                isAuthenticated ? <Journal /> : <Navigate to="/auth" replace />
+              }
+            />
+
+            {/* Auth route for sign-in/sign-up */}
+            <Route
+              path="/auth"
+              element={
+                !isAuthenticated ? <AuthPage /> : <Navigate to="/" replace />
+              }
+            />
+
+            {/* Fallback route for unmatched paths */}
+            <Route
+              path="*"
+              element={
+                <Navigate to={isAuthenticated ? "/" : "/auth"} replace />
+              }
+            />
+          </Routes>
+        </div>
+      </div>
     </Router>
   );
 }
