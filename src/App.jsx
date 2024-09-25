@@ -8,7 +8,7 @@ import "./App.css";
 import Freewriter from "./pages/Freewriter.jsx";
 import Journal from "./pages/Journal.jsx";
 import AuthPage from "./pages/AuthPage/AuthPage.jsx";
-import Navigation from "./components/Navigation.jsx";
+import Navigation from "./components/Navigation/Navigation.jsx";
 import { useContext } from "react";
 import { AuthContext } from "./contexts/AuthContext.jsx";
 

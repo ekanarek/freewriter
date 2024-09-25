@@ -1,6 +1,7 @@
+import "./Navigation.css";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import useAuth from "../utils/useAuth.js";
+import useAuth from "../../utils/useAuth.js";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 
