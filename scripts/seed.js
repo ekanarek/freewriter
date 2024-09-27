@@ -1,7 +1,7 @@
 import { Client } from "pg";
 
 const client = new Client({
-  user: "emily.kanarek",
+  user: "admin",
   host: "localhost",
   database: "freewriter",
   password: "writing-is-fun",
