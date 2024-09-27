@@ -4,6 +4,7 @@ const client = new Client({
   user: "emily.kanarek",
   host: "localhost",
   database: "freewriter",
+  password: "writing-is-fun",
   port: 5432,
 });
 
