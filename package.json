@@ -8,7 +8,9 @@
     "vite-dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "initdb": "dropdb --if-exists freewriter && createdb freewriter", 
+    "seed": "node scripts/seed.js"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.8.2",
