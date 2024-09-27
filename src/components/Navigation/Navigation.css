@@ -28,10 +28,10 @@ nav a:hover {
 }
 
 nav button {
-  background-color: #b59dfa;
+  background-color: #dbbfdb;
   color: white;
   font-size: 1.2rem;
-  border: 1px solid #b59dfa;
+  border: 1px solid #dbbfdb;
   padding: 10px 15px;
   border-radius: 5px;
   cursor: pointer;
