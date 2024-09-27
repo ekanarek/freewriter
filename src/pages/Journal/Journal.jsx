@@ -67,7 +67,9 @@ export default function Journal() {
         <tbody>
           {entries.map((entry) => (
             <tr key={entry.id}>
-              <td className="date-cell">{new Date(entry.created_at).toLocaleDateString()}</td>
+              <td className="date-cell">
+                {new Date(entry.created_at).toLocaleDateString()}
+              </td>
               <td className="preview-cell">{entry.content.split("/n")[0]}</td>
               <td className="buttons-cell">
                 <button onClick={() => handleEdit(entry.id)}>Edit</button>

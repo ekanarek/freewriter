@@ -1,9 +1,9 @@
-import { Client } from 'pg';
+import { Client } from "pg";
 
 const client = new Client({
-  user: 'emily.kanarek', 
-  host: 'localhost',
-  database: 'freewriter', 
+  user: "emily.kanarek",
+  host: "localhost",
+  database: "freewriter",
   port: 5432,
 });
 
@@ -41,9 +41,9 @@ const createTables = async () => {
     await client.query(createUsersTable);
     await client.query(createPhotosTable);
     await client.query(createJournalEntriesTable);
-    console.log('Tables created successfully!');
+    console.log("Tables created successfully!");
   } catch (err) {
-    console.error('Error creating tables:', err.stack);
+    console.error("Error creating tables:", err.stack);
   }
 };
 
@@ -60,9 +60,9 @@ const seedUsers = async () => {
 
   try {
     const res = await client.query(query);
-    console.log('Users seeded:', res.rows);
+    console.log("Users seeded:", res.rows);
   } catch (err) {
-    console.error('Error seeding users:', err.stack);
+    console.error("Error seeding users:", err.stack);
   }
 };
 
@@ -79,9 +79,9 @@ const seedPhotos = async () => {
 
   try {
     const res = await client.query(query);
-    console.log('Photos seeded:', res.rows);
+    console.log("Photos seeded:", res.rows);
   } catch (err) {
-    console.error('Error seeding photos:', err.stack);
+    console.error("Error seeding photos:", err.stack);
   }
 };
 
@@ -98,24 +98,24 @@ const seedJournalEntries = async () => {
 
   try {
     const res = await client.query(query);
-    console.log('Journal entries seeded:', res.rowCount);
+    console.log("Journal entries seeded:", res.rowCount);
   } catch (err) {
-    console.error('Error seeding journal entries:', err.stack);
+    console.error("Error seeding journal entries:", err.stack);
   }
 };
 
 // Run the seed functions
 const runSeed = async () => {
   try {
-    await createTables(); 
-    await seedUsers(); 
-    await seedPhotos(); 
-    await seedJournalEntries(); 
-    console.log('Seeding completed successfully!');
+    await createTables();
+    await seedUsers();
+    await seedPhotos();
+    await seedJournalEntries();
+    console.log("Seeding completed successfully!");
   } catch (err) {
-    console.error('Error during seeding:', err.stack);
+    console.error("Error during seeding:", err.stack);
   } finally {
-    client.end(); 
+    client.end();
   }
 };
 
